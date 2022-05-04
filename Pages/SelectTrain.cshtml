@@ -1,0 +1,61 @@
+﻿@page
+@model TrainTickets.Pages.SelectTrainModel
+@{
+    ViewData["Title"] = "Select Train";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/trains.css">
+}
+
+<div class="container pb-5">
+    <h1 class="h2 mt-5 text-center">@Model.OriginStation &#8594; @Model.DestStation&nbsp;&nbsp;&nbsp;<span class="h4">@Model.DepartureDate</span></h1>
+
+    @foreach (var trainVM in Model.TrainVM) {
+        <div class="row mt-5 p-3 border rounded-3 bg-light shadow">
+            <div class="col-md-3">
+                <div class="row pt-2 pb-1 fw-bold"><i class="fa-solid fa-train">&nbsp;&nbsp;@trainVM.Name</i></div>
+                <div class="row">@trainVM.FirstStation &#8594; @trainVM.LastStation</div>
+            </div>
+            <div class="col-md-7">
+                <div class="row">
+                    <div class="col-4 fw-bold">Departure</div>
+                    <div class="col-4 fw-bold">Trip Duration</div>
+                    <div class="col-4 fw-bold">Arrival</div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <span>@trainVM.DepartTime</span>
+                        <span class="date">@trainVM.DepartDate</span>
+                    </div>
+                    <div class="col-4">@trainVM.TripDuration</div>
+                    <div class="col-4">
+                        <span>@trainVM.ArrivalTime</span>
+                        <span class="date">@trainVM.ArrivalDate</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="row">
+                    <form action="/SelectCoach" method="get">
+                        <button id="selectBtn" class="btn btn-success w-100  mt-2"><span>Select: @trainVM.MinPriceTenge</span> ₸ +</button>
+                        <input type="hidden" name="trainID" value="@trainVM.ID">
+                        <input type="hidden" name="originStation" value="@Model.OriginStation">
+                        <input type="hidden" name="destStation" value="@Model.DestStation">
+                        <input type="hidden" name="departureDate" value="@Model.DepartureDate">
+
+                        <input type="hidden" name="trainName" value="@trainVM.Name">
+                        <input type="hidden" name="trainFirstStation" value="@trainVM.FirstStation">
+                        <input type="hidden" name="trainLastStation" value="@trainVM.LastStation">
+                        <input type="hidden" name="trainDepartDate" value="@trainVM.DepartDate">
+                        <input type="hidden" name="trainDepartTime" value="@trainVM.DepartTime">
+                        <input type="hidden" name="trainArrivalDate" value="@trainVM.ArrivalDate">
+                        <input type="hidden" name="trainArrivalTime" value="@trainVM.ArrivalTime">
+                        <input type="hidden" name="trainTripDuration" value="@trainVM.DepartDate">
+                        <input type="hidden" name="trainMinPriceTenge" value="@trainVM.MinPriceTenge">
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+</div>

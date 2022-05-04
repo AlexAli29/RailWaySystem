@@ -1,0 +1,11 @@
+#bgImg {
+    background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), url("../img/index-bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+#searchBtn {
+    font-size: 1.2rem;
+    height: 2.5em;
+}

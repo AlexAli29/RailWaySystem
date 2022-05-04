@@ -1,0 +1,309 @@
+﻿@page
+@model TrainTickets.Pages.SelectCoachModel
+@{
+    ViewData["Title"] = "Select Coach";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/coaches.css">
+}
+
+@section Scripts {
+    <script src="~/js/coaches.js"></script>
+}
+
+<div class="container pb-5">
+    <h1 class="h2 mt-5 text-center">@Model.OriginStation &#8594; @Model.DestStation&nbsp;&nbsp;&nbsp;<span class="h4">@Model.DepartureDate</span></h1>
+
+    <div class="row mt-5 p-3 border rounded-3 bg-white shadow">
+        <div class="col-md-3">
+            <div class="row pt-2 pb-1 fw-bold"><i class="fa-solid fa-train">&nbsp;&nbsp;034T</i></div>
+            <div class="row">Almaty &#8594; Petropavlovsk</div>
+        </div>
+        <div class="col-md-7">
+            <div class="row">
+                <div class="col-4 fw-bold">Departure</div>
+                <div class="col-4 fw-bold">Trip duration</div>
+                <div class="col-4 fw-bold">Arrival</div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <span>18:02</span>
+                    <span class="date">30.04.2022</span>
+                </div>
+                <div class="col-4">24h 1m</div>
+                <div class="col-4">
+                    <span>18:01</span>
+                    <span class="date">01.05.2022</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 mt-2 price">from <span>5450</span> ₸</div>
+    </div>
+
+    <div class="row mt-5">
+        <h2 class="h3 text-center mb-4">
+            Select coach type:</h1>
+
+            <button id="platzcartBtn" class="col-6 btn btn-outline-warning active rounded-0 coachTypeBtn">Platzcart</button>
+            <button id="kupeBtn" class="col-6 btn btn-outline-success rounded-0 coachTypeBtn">Kupe</button>
+    </div>
+
+    <div id="platzcartCoaches">
+        <div class="row mt-5 p-3 pb-2 border rounded-3 bg-white shadow">
+            <div class="coach">
+                <h2 class="h3 text-center pt-2 pb-3">Coach #<span>1</span></h2>
+
+                <form action="/PurchaseTicket" method="get">
+                    <input type="hidden" name="coach" value="1">
+
+                    <div class="overflow-auto d-flex justify-content-center">
+                        <div class="coachBgImg">
+                            <div class="btn-group text-center" role="group">
+                                <!-- Room 1 -->
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check" name="place" value="1" id="coach1Place1" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach1Place1">1</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check" name="place" value="2" id="coach1Place2" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach1Place2">2</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check" name="place" value="3" id="coach1Place3" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach1Place3">3</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check" name="place" value="4" id="coach1Place4" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach1Place4">4</label>
+                                </div>
+
+                                <!-- Room 2 -->
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check" name="place" value="5" id="coach1Place5" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach1Place5">5</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check" name="place" value="6" id="coach1Place6" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach1Place6">6</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check" name="place" value="7" id="coach1Place7" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach1Place7">7</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check" name="place" value="8" id="coach1Place8" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach1Place8">8</label>
+                                </div>
+
+                                <!-- Room 3 -->
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check" name="place" value="9" id="coach1Place9" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach1Place9">9</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check w-100" name="place" value="10" id="coach1Place10" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach1Place10">10</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check w-100" name="place" value="11" id="coach1Place11" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach1Place11">11</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check w-100" name="place" value="12" id="coach1Place12" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach1Place12">12</label>
+                                </div>
+
+                                <!-- Room 4 -->
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check" name="place" value="13" id="coach1Place13" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach1Place13">13</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check w-100" name="place" value="14" id="coach1Place14" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach1Place14">14</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check w-100" name="place" value="15" id="coach1Place15" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach1Place15">15</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check w-100" name="place" value="16" id="coach1Place16" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach1Place16">16</label>
+                                </div>
+
+                                <!-- Room 5 -->
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check w-100" name="place" value="17" id="coach1Place17" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach1Place17">17</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check w-100" name="place" value="18" id="coach1Place18" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach1Place18">18</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check" name="place" value="19" id="coach1Place19" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach1Place19">19</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check w-100" name="place" value="20" id="coach1Place20" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach1Place20">20</label>
+                                </div>
+
+                                <!-- Room 6 -->
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check w-100" name="place" value="21" id="coach1Place21" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach1Place21">21</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check w-100" name="place" value="22" id="coach1Place22" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach1Place22">22</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check" name="place" value="23" id="coach1Place23" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach1Place23">23</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check w-100" name="place" value="24" id="coach1Place24" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach1Place24">24</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center mt-4">
+                        <input type="submit" class="form-control btn btn-primary continueBtn" value="Continue">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="kupeCoaches">
+        <div class="row mt-5 p-3 pb-2 border rounded-3 bg-white shadow">
+            <div class="coach">
+                <h2 class="h3 text-center pt-2 pb-3">Coach #<span>2</span></h2>
+
+                <form action="/PurchaseTicket" method="get">
+                    <input type="hidden" name="coach" value="2">
+
+                    <div class="overflow-auto d-flex justify-content-center">
+                        <div class="coachBgImg">
+                            <div class="btn-group text-center" role="group">
+                                <!-- Room 1 -->
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check" name="place" value="1" id="coach1Place2" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach2Place1">1</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check" name="place" value="2" id="coach2Place2" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach2Place2">2</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check" name="place" value="3" id="coach2Place3" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach2Place3">3</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check" name="place" value="4" id="coach2Place4" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach2Place4">4</label>
+                                </div>
+
+                                <!-- Room 2 -->
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check" name="place" value="5" id="coach2Place5" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach2Place5">5</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check" name="place" value="6" id="coach2Place6" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach2Place6">6</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check" name="place" value="7" id="coach2Place7" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach2Place7">7</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check" name="place" value="8" id="coach2Place8" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach2Place8">8</label>
+                                </div>
+
+                                <!-- Room 3 -->
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check" name="place" value="9" id="coach2Place9" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach2Place9">9</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check w-100" name="place" value="10" id="coach2Place10" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach2Place10">10</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check w-100" name="place" value="11" id="coach2Place11" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach2Place11">11</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check w-100" name="place" value="12" id="coach2Place12" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach2Place12">12</label>
+                                </div>
+
+                                <!-- Room 4 -->
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check" name="place" value="13" id="coach2Place13" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach2Place13">13</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check w-100" name="place" value="14" id="coach2Place14" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach2Place14">14</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check w-100" name="place" value="15" id="coach2Place15" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach2Place15">15</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check w-100" name="place" value="16" id="coach2Place16" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach2Place16">16</label>
+                                </div>
+
+                                <!-- Room 5 -->
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check w-100" name="place" value="17" id="coach2Place17" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach2Place17">17</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check w-100" name="place" value="18" id="coach2Place18" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach2Place18">18</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check" name="place" value="19" id="coach2Place19" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach2Place19">19</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check w-100" name="place" value="20" id="coach2Place20" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach2Place20">20</label>
+                                </div>
+
+                                <!-- Room 6 -->
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check w-100" name="place" value="21" id="coach2Place21" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach2Place21">21</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check w-100" name="place" value="22" id="coach2Place22" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach2Place22">22</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check" name="place" value="23" id="coach2Place23" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach2Place23">23</label>
+                                </div>
+                                <div class="containerPlace">
+                                    <input type="radio" class="btn-check w-100" name="place" value="24" id="coach2Place24" autocomplete="off" required>
+                                    <label class="btn btn-outline-primary" for="coach2Place24">24</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center mt-4">
+                        <input type="submit" class="form-control btn btn-primary continueBtn" value="Continue">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

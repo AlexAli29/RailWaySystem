@@ -1,0 +1,39 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/index.css">
+}
+
+<div id="bgImg" class="d-flex align-items-center vh-100">
+    <div class="col-md-10 offset-md-1 mb-5 border rounded-3 py-4 px-3 bg-light shadow">
+        <form action="/SelectTrain" method="get" class="row">
+            <div class="col-md-3">
+                <select class="form-select form-select-lg" name="originStation">
+                    <option value="" selected disabled hidden>Select origin station</option>
+                    @foreach (var station in Model.Station) {
+                        <option value="@station.Name">@station.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select class="form-select form-select-lg" name="destStation">
+                    <option value="" selected disabled hidden>Select destination station</option>
+                    @foreach (var station in Model.Station) {
+                        <option value="@station.Name">@station.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-3">
+                <input class="form-control form-control-lg col-md-2" type="date" name="departureDate" value="2022-04-30">
+            </div>
+
+            <div class="col-md-3">
+                <input id="searchBtn" type="submit" class="form-control btn btn-primary" value="Search">
+            </div>
+        </form>
+    </div>
+</div>

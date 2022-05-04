@@ -1,0 +1,60 @@
+﻿@page
+@model TrainTickets.Pages.TrainStations.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainStation[0].Ordinal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainStation[0].ArrivalAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainStation[0].DepartureAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainStation[0].Train)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainStation[0].Station)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.TrainStation) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ordinal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArrivalAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartureAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Train.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Station.ID)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

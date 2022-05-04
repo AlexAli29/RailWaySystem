@@ -1,0 +1,189 @@
+﻿@page
+@model TrainTickets.Pages.PurchaseTicketModel
+@{
+}
+
+<div class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="text-center col-md-7 mx-auto">
+                <h1 class="h2 mt-5 text-center">Almaty &#8594; Nur-Sultan&nbsp;&nbsp;&nbsp;<span class="h4">29.04.2022</span></h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 order-md-1">
+            <form class="needs-validation" novalidate="">
+                <div class="row border rounded-3 bg-light shadow p-3">
+                    <div class="col-md-4 mb-3">
+                        <div class="row">
+                            <div class="col-md-12"><label for="firstName">Поезд "НОМЕР"</label></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6"><label for="firstName" class="m-2">Отправление</label></div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h5 class="">"СТАНЦИЯ ОТПРАВЛЕНИЯ"</h5>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h6 class="">"ВРЕМЯ ОТПРАВЛЕНИЯ"</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6"><label for="firstName" class="m-2">Прибытие</label></div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h5 class="">"СТАНЦИЯ ОТПРАВЛЕНИЯ"</h5>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h6 class="">"ВРЕМЯ ПРИБЫТИЯ"</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="invalid-feedback"> Valid first name is required. </div>
+                    </div>
+                    <div class="col-md-4 border-start border-2">
+                        <div class="row">
+                            <div class="col-md-12"><label for="firstName" class="m-2">Вагон "НОМЕР"</label></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h5 class="">Общее время в пути - "ВРЕМЯ В ПУТИ"</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="invalid-feedback"> Valid first name is required. </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="row"></div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1 class="">"ЦЕНА" тг.</h1>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12"><label for="firstName" class="m-2">Стоимость за 1 место взрослого пассажира.</label></div>
+                        </div>
+                        <div class="invalid-feedback"> Valid first name is required. </div>
+                    </div>
+                </div>
+
+                <div class="row border rounded-3 bg-light shadow mt-2 p-3">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="firstName">First name</label>
+                            <input type="text" class="form-control" id="firstName" placeholder="" value="">
+                            <div class="invalid-feedback"> Valid first name is required. </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="lastName">Last name</label>
+                            <input type="text" class="form-control" id="lastName" placeholder="" value="">
+                            <div class="invalid-feedback"> Valid last name is required. </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="email">Email</label>
+                            <div class="form-group row">
+                                <div class="col-10"><input type="email" class="form-control w-100" id="email" placeholder="you@example.com" required="required"></div>
+                            </div>
+                            <div class="invalid-feedback"> Valid first name is required. </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="phoneNumber">Номер телефона</label>
+                            <input type="text" class="form-control w-75" id="phoneNumber" placeholder="" value="">
+                            <div class="invalid-feedback"> Valid last name is required. </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" contenteditable="true">Тип документа</label>
+                        <input type="text" class="form-control" id="address" placeholder="Удостоверение Личности">
+                        <div class="invalid-feedback"> Please enter your shipping address. </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 mb-3">
+                            <label for="documentType">Тип документа</label>
+                            <select class="form-select" id="documentType">
+                                <option value="">Choose...</option>
+                                <option value="ПК">Паспорт Казахстана</option>
+                                <option value="ПН">Паспорт РФ</option>
+                                <option value="ЗП">Заграничный паспорт РФ</option>
+                                <option value="УЛ">Удостоверение личности</option>
+                                <option value="СР">Свидетельство о рождении</option>
+                                <option value="ВБ">Военный билет</option>
+                                <option value="ЗЗ">Другие иностр. документы</option>
+                            </select>
+                            <div class="invalid-feedback"> Please select a valid country. </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="documentNumber">Номер документа</label>
+                            <div class="form-group row">
+                                <div class="col-10"><input type="text" class="form-control" id="documentNumber" placeholder="Номер документа"></div>
+                            </div>
+                            <div class="invalid-feedback"> Please provide a valid state. </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="IIN">ИИН</label>
+                            <input type="text" class="form-control" id="IIN" placeholder="ИИН" required="">
+                            <div class="invalid-feedback"> Zip code required. </div>
+                        </div>
+                    </div>
+                    <hr class="mb-4">
+                    <hr class="mb-4">
+                    <h4 class="mb-3"><b>Payment</b></h4>
+                    <div class="d-block my-3">
+                        <div class="custom-control custom-radio">
+                            <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked="" required="" value="on"> <label class="custom-control-label" for="credit">Kaspi</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required="" value="on"> <label class="custom-control-label" for="debit">Halyk</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required="" value="on"> <label class="custom-control-label" for="paypal">Qiwi</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="cc-name">Name on card</label>
+                            <input type="text" class="form-control" id="cc-name" placeholder="" required=""> <small class="text-muted">Full name as displayed on card</small>
+                            <div class="invalid-feedback"> Name on card is required </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="cc-number">Credit card number</label>
+                            <input type="text" class="form-control" id="cc-number" placeholder="" required="">
+                            <div class="invalid-feedback"> Credit card number is required </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <label for="cc-expiration">Expiration</label>
+                            <input type="text" class="form-control" id="cc-expiration" placeholder="" required="">
+                            <div class="invalid-feedback"> Expiration date required </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="cc-expiration">CVV</label>
+                            <input type="text" class="form-control" id="cc-cvv" placeholder="" required="">
+                            <div class="invalid-feedback"> Security code required </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="mb-4">
+                <div class="col-md-12"><button class="btn btn-lg btn-block btn-success mt-1 mb-3" type="submit">Continue to checkout</button></div>
+            </form>
+        </div>
+    </div>
+</div>
