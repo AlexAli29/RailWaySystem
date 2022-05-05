@@ -43,7 +43,7 @@
 
     <div class="row mt-5">
         <h2 class="h3 text-center mb-4">
-            Select coach type:</h1>
+            Select coach type:</h2>
 
             <button id="platzcartBtn" class="col-6 btn btn-outline-warning active rounded-0 coachTypeBtn">Platzcart</button>
             <button id="kupeBtn" class="col-6 btn btn-outline-success rounded-0 coachTypeBtn">Kupe</button>
@@ -63,8 +63,8 @@
                             <div class="btn-group text-center" role="group">
                                 @foreach (var place in platzCoach.Places) {
                                     <div class="containerPlace">
-                                        <input type="radio" class="btn-check" name="place" value="@place.PlaceNumber" id="@($"coach{platzCoach.CoachNumber}Place{place.PlaceNumber}")" autocomplete="off" required disabled="@place.IsFree.ToString()"}>
-                                        <label class="btn btn-outline-primary" for="@($"coach{platzCoach.CoachNumber}Place{place.PlaceNumber}")" disabled="@place.IsFree.ToString()">@place.PlaceNumber</label>
+                                        <input type="radio" class="btn-check" name="place" value="@place.PlaceNumber" id="@($"coach{platzCoach.CoachNumber}Place{place.PlaceNumber}")" autocomplete="off" required @(place.IsFree ? "" : "disabled")>
+                                        <label class="btn btn-outline-primary" for="@($"coach{platzCoach.CoachNumber}Place{place.PlaceNumber}")">@place.PlaceNumber</label>
                                     </div>
                                 }
                             </div>
@@ -91,7 +91,7 @@
                             <div class="btn-group text-center" role="group">
                                 @foreach (var place in kupeCoach.Places) {
                                     <div class="containerPlace">
-                                        <input type="radio" class="btn-check" name="place" value="@place.PlaceNumber" id="@($"coach{kupeCoach.CoachNumber}Place{place.PlaceNumber}")" autocomplete="off" required>
+                                        <input type="radio" class="btn-check" name="place" value="@place.PlaceNumber" id="@($"coach{kupeCoach.CoachNumber}Place{place.PlaceNumber}")" autocomplete="off" required @(place.IsFree ? "" : "disabled")>
                                         <label class="btn btn-outline-primary" for="@($"coach{kupeCoach.CoachNumber}Place{place.PlaceNumber}")">@place.PlaceNumber</label>
                                     </div>
                                 }
