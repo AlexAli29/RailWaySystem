@@ -9,7 +9,7 @@
 }
 
 <div class="container pb-5">
-    <h1 class="h2 mt-5 text-center">@Model.OriginStation &#8594; @Model.DestStation&nbsp;&nbsp;&nbsp;<span class="h4">@Model.DepartureDate</span></h1>
+    <h1 class="h2 mt-5 text-center">@Model.StationsAndDateVM.OriginStation &#8594; @Model.StationsAndDateVM.DestStation&nbsp;&nbsp;&nbsp;<span class="h4">@Model.StationsAndDateVM.DepartDate</span></h1>
 
     @foreach (var trainVM in Model.TrainVM) {
         <div class="row mt-5 p-3 border rounded-3 bg-light shadow">
@@ -39,11 +39,8 @@
                 <div class="row">
                     <form action="/SelectCoach" method="get">
                         <button id="selectBtn" class="btn btn-success w-100  mt-2"><span>Select: @trainVM.MinPriceTenge</span> ₸ +</button>
-                        <input type="hidden" name="trainID" value="@trainVM.ID">
-                        <input type="hidden" name="originStation" value="@Model.OriginStation">
-                        <input type="hidden" name="destStation" value="@Model.DestStation">
-                        <input type="hidden" name="departureDate" value="@Model.DepartureDate">
 
+                        <input type="hidden" name="trainID" value="@trainVM.ID">
                         <input type="hidden" name="trainName" value="@trainVM.Name">
                         <input type="hidden" name="trainFirstStation" value="@trainVM.FirstStation">
                         <input type="hidden" name="trainLastStation" value="@trainVM.LastStation">
@@ -51,7 +48,7 @@
                         <input type="hidden" name="trainDepartTime" value="@trainVM.DepartTime">
                         <input type="hidden" name="trainArrivalDate" value="@trainVM.ArrivalDate">
                         <input type="hidden" name="trainArrivalTime" value="@trainVM.ArrivalTime">
-                        <input type="hidden" name="trainTripDuration" value="@trainVM.DepartDate">
+                        <input type="hidden" name="trainTripDuration" value="@trainVM.TripDuration">
                         <input type="hidden" name="trainMinPriceTenge" value="@trainVM.MinPriceTenge">
                     </form>
                 </div>

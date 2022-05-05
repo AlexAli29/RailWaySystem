@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 
 using TrainTickets.Models.ViewModels;
+using Newtonsoft.Json;
 
 namespace TrainTickets.Pages
 {
@@ -17,22 +18,34 @@ namespace TrainTickets.Pages
             _context = context;
         }
 
+        public StationsAndDateVM StationsAndDateVM { get; set; }
         public IList<TrainVM> TrainVM { get; set; } = new List<TrainVM>();
-        [FromQuery]
-        public string OriginStation { get; set; }
-        [FromQuery]
-        public string DestStation { get; set; }
-        [FromQuery]
-        public string DepartureDate { get; set; }
+        
 
         public async Task OnGetAsync(string originStation, string destStation, string departureDate) {
-            DateTime departDatetime = DateTime.ParseExact(departureDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            DateOnly departDate = DateOnly.ParseExact(departureDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+
+            StationsAndDateVM = new StationsAndDateVM {
+                OriginStation = originStation,
+                DestStation = destStation,
+                DepartDate = departDate
+            };
+            TempData["StationsAndDateVM"] = JsonConvert.SerializeObject(StationsAndDateVM);
 
             IList<Train> trains = await _context.Train
                 .Include(t => t.TrainStations)
                     .ThenInclude(ts => ts.Station)
                 .Include(t => t.Coaches)
                 .ToListAsync();
+
+            InitTrainVM(trains, StationsAndDateVM);
+        }
+
+        private void InitTrainVM(IList<Train> trains, StationsAndDateVM stationsAndDateVM) {
+            string originStation = stationsAndDateVM.OriginStation;
+            string destStation = stationsAndDateVM.DestStation;
+            // Convert to DateTime to compare dates with TrainStation.DepartureAt of type DateTime (see comment below)
+            DateTime departDatetime = stationsAndDateVM.DepartDate.ToDateTime(new TimeOnly(0, 0));
 
             foreach (Train train in trains) {
                 TrainStation originTS = null;
@@ -45,7 +58,7 @@ namespace TrainTickets.Pages
                     if (originTS != null && ts.Station.Name.Equals(destStation)) {
                         destTS = ts;
                     }
-                    if (ts.DepartureAt.Date.Equals(departDatetime.Date)) {
+                    if (ts.DepartureAt.Date.Equals(departDatetime.Date)) { // DateTime comparison is here
                         departDateMatches = true;
                     }
                 }
