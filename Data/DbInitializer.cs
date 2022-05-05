@@ -131,7 +131,7 @@ namespace TrainTickets.Data {
                 for (int j = 0; j < NUM_PLACES_IN_COACH; j++) {
                     string placeType = j % 2 == 0 ? "Bottom" : "Top";
                     //places[i * coaches.Length + j] = new Place { CoachID = i + 1, PlaceNumber = j + 1, Type = placeType, IsFree = true };
-                    places.Add(new Place { CoachID = i + 1, PlaceNumber = j + 1, Type = placeType, IsFree = true });
+                    places.Add(new Place { CoachID = i + 1, PlaceNumber = j + 1, Type = placeType, IsFree = false });
                 }
             }
             context.Place.AddRange(places);

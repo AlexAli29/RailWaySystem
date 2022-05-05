@@ -63,8 +63,8 @@
                             <div class="btn-group text-center" role="group">
                                 @foreach (var place in platzCoach.Places) {
                                     <div class="containerPlace">
-                                        <input type="radio" class="btn-check" name="place" value="@place.PlaceNumber" id="@($"coach{platzCoach.CoachNumber}Place{place.PlaceNumber}")" autocomplete="off" required>
-                                        <label class="btn btn-outline-primary" for="@($"coach{platzCoach.CoachNumber}Place{place.PlaceNumber}")">@place.PlaceNumber</label>
+                                        <input type="radio" class="btn-check" name="place" value="@place.PlaceNumber" id="@($"coach{platzCoach.CoachNumber}Place{place.PlaceNumber}")" autocomplete="off" required disabled="@place.IsFree.ToString()"}>
+                                        <label class="btn btn-outline-primary" for="@($"coach{platzCoach.CoachNumber}Place{place.PlaceNumber}")" disabled="@place.IsFree.ToString()">@place.PlaceNumber</label>
                                     </div>
                                 }
                             </div>
