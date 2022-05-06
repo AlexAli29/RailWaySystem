@@ -54,12 +54,12 @@ namespace TrainTickets.Pages
                 foreach (TrainStation ts in train.TrainStations.ToList()) {
                     if (ts.Station.Name.Equals(originStation)) {
                         originTS = ts;
+                        if (ts.DepartureAt.Date.Equals(departDatetime.Date)) { // DateTime comparison is here
+                            departDateMatches = true;
+                        }
                     }
-                    if (originTS != null && ts.Station.Name.Equals(destStation)) {
+                    if (originTS != null && departDateMatches && ts.Station.Name.Equals(destStation)) {
                         destTS = ts;
-                    }
-                    if (ts.DepartureAt.Date.Equals(departDatetime.Date)) { // DateTime comparison is here
-                        departDateMatches = true;
                     }
                 }
                 if (originTS != null && destTS != null && departDateMatches) {

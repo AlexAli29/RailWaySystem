@@ -18,7 +18,7 @@
     <div class="row mt-5 p-3 border rounded-3 bg-white shadow">
         <div class="col-md-3">
             <div class="row pt-2 pb-1 fw-bold"><i class="fa-solid fa-train">&nbsp;&nbsp;034T</i></div>
-            <div class="row">@Model.TrainVM.FirstStation &#8594; @Model.TrainVM.LastStation</div>
+            <div class="row">@Model.StationsAndDateVM.OriginStation &#8594; @Model.StationsAndDateVM.DestStation</div>
         </div>
         <div class="col-md-7">
             <div class="row">
@@ -53,7 +53,7 @@
 
         @foreach (var platzCoach in Model.PlatzcartCoaches) {
             <div class="row mt-5 p-3 pb-2 border rounded-3 bg-white shadow">
-                <h2 class="h3 text-center pt-2 pb-3">Coach #<span>@platzCoach.CoachNumber</span></h2>
+                <h2 class="h3 text-center pt-2 pb-3">Coach #@platzCoach.CoachNumber (Price: @platzCoach.PriceTenge ₸)</h2>
 
                 <form action="/PurchaseTicket" method="get">
                     <input type="hidden" name="coach" value="@platzCoach.CoachNumber">
@@ -70,7 +70,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-center mt-4">
+                    <div class="d-flex justify-content-center my-4">
                         <input type="submit" class="form-control btn btn-primary continueBtn" value="Continue">
                     </div>
                 </form>
@@ -81,7 +81,7 @@
     <div id="kupeCoaches">
         @foreach (var kupeCoach in Model.KupeCoaches) {
             <div class="row mt-5 p-3 pb-2 border rounded-3 bg-white shadow">
-                <h2 class="h3 text-center pt-2 pb-3">Coach #<span>@kupeCoach.CoachNumber</span></h2>
+                <h2 class="h3 text-center pt-2 pb-3">Coach #@kupeCoach.CoachNumber (Price: @kupeCoach.PriceTenge ₸)</h2>
 
                 <form action="/PurchaseTicket" method="get">
                     <input type="hidden" name="coach" value="@kupeCoach.CoachNumber">
@@ -98,7 +98,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-center mt-4">
+                    <div class="d-flex justify-content-center my-4">
                         <input type="submit" class="form-control btn btn-primary continueBtn" value="Continue">
                     </div>
                 </form>
