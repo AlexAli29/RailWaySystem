@@ -6,10 +6,8 @@ namespace TrainTickets.Models.ViewModels {
         public string Name { get; set; }
         public string FirstStation { get; set; }
         public string LastStation { get; set; }
-        public DateOnly DepartDate { get; set; }
-        public TimeOnly DepartTime { get; set; }
-        public DateOnly ArrivalDate { get; set; }
-        public TimeOnly ArrivalTime { get; set; }
+        public DateTime DepartDatetime {  get; set; }
+        public DateTime ArrivalDatetime { get; set; }
         public string TripDuration { get; set; }
         public int MinPriceTenge { get; set; }
     }

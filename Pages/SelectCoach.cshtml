@@ -13,7 +13,7 @@
 }
 
 <div class="container pb-5">
-    <h1 class="h2 mt-5 text-center">@Model.StationsAndDateVM.OriginStation &#8594; @Model.StationsAndDateVM.DestStation&nbsp;&nbsp;&nbsp;<span class="h4">@Model.StationsAndDateVM.DepartDate</span></h1>
+    <h1 class="h2 mt-5 text-center">@Model.StationsAndDateVM.OriginStation &#8594; @Model.StationsAndDateVM.DestStation&nbsp;&nbsp;&nbsp;<span class="h4">@(DateOnly.FromDateTime(@Model.StationsAndDateVM.DepartDatetime))</span></h1>
 
     <div class="row mt-5 p-3 border rounded-3 bg-white shadow">
         <div class="col-md-3">
@@ -27,16 +27,16 @@
                 <div class="col-4 fw-bold">Arrival</div>
             </div>
             <div class="row">
-                <div class="col-4">
-                    <span>@Model.TrainVM.DepartTime</span>
-                    <span class="date">@Model.TrainVM.DepartDate</span>
-                </div>
-                <div class="col-4">@Model.TrainVM.TripDuration</div>
-                <div class="col-4">
-                    <span>@Model.TrainVM.ArrivalTime</span>
-                    <span class="date">@Model.TrainVM.ArrivalDate</span>
-                </div>
-            </div>
+                        <div class="col-4">
+                            <span>@(TimeOnly.FromDateTime(@Model.TrainVM.DepartDatetime))</span>
+                            <span class="date">@(DateOnly.FromDateTime(@Model.TrainVM.DepartDatetime))</span>
+                        </div>
+                        <div class="col-4">@Model.TrainVM.TripDuration</div>
+                        <div class="col-4">
+                            <span>@(TimeOnly.FromDateTime(@Model.TrainVM.ArrivalDatetime))</span>
+                            <span class="date">@(DateOnly.FromDateTime(@Model.TrainVM.ArrivalDatetime))</span>
+                        </div>
+                    </div>
         </div>
         <div class="col-md-2 mt-2 price">from <span>@Model.TrainVM.MinPriceTenge</span> ₸</div>
     </div>
@@ -52,57 +52,57 @@
     <div id="platzcartCoaches">
 
         @foreach (var platzCoach in Model.PlatzcartCoaches) {
-            <div class="row mt-5 p-3 pb-2 border rounded-3 bg-white shadow">
-                <h2 class="h3 text-center pt-2 pb-3">Coach #@platzCoach.CoachNumber (Price: @platzCoach.PriceTenge ₸)</h2>
+                <div class="row mt-5 p-3 pb-2 border rounded-3 bg-white shadow">
+                    <h2 class="h3 text-center pt-2 pb-3">Coach #@platzCoach.CoachNumber (Price: @platzCoach.PriceTenge ₸)</h2>
 
-                <form action="/PurchaseTicket" method="get">
-                    <input type="hidden" name="coach" value="@platzCoach.CoachNumber">
+                    <form action="/PurchaseTicket" method="get">
+                        <input type="hidden" name="coachNumber" value="@platzCoach.CoachNumber">
 
-                    <div class="overflow-auto d-flex justify-content-center">
-                        <div class="coachBgImg">
-                            <div class="btn-group text-center" role="group">
+                        <div class="overflow-auto d-flex justify-content-center">
+                            <div class="coachBgImg">
+                                <div class="btn-group text-center" role="group">
                                 @foreach (var place in platzCoach.Places) {
-                                    <div class="containerPlace">
-                                        <input type="radio" class="btn-check" name="place" value="@place.PlaceNumber" id="@($"coach{platzCoach.CoachNumber}Place{place.PlaceNumber}")" autocomplete="off" required @(place.IsFree ? "" : "disabled")>
-                                        <label class="btn btn-outline-primary" for="@($"coach{platzCoach.CoachNumber}Place{place.PlaceNumber}")">@place.PlaceNumber</label>
-                                    </div>
+                                            <div class="containerPlace">
+                                                <input type="radio" class="btn-check" name="placeNumber" value="@place.PlaceNumber" id="@($"coach{platzCoach.CoachNumber}Place{place.PlaceNumber}")" autocomplete="off" required @(place.IsFree ? "" : "disabled")>
+                                                <label class="btn btn-outline-primary" for="@($"coach{platzCoach.CoachNumber}Place{place.PlaceNumber}")">@place.PlaceNumber</label>
+                                            </div>
                                 }
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="d-flex justify-content-center my-4">
-                        <input type="submit" class="form-control btn btn-primary continueBtn" value="Continue">
-                    </div>
-                </form>
-            </div>
+                        <div class="d-flex justify-content-center my-4">
+                            <input type="submit" class="form-control btn btn-primary continueBtn" value="Continue">
+                        </div>
+                    </form>
+                </div>
         }
     </div>
 
     <div id="kupeCoaches">
         @foreach (var kupeCoach in Model.KupeCoaches) {
-            <div class="row mt-5 p-3 pb-2 border rounded-3 bg-white shadow">
-                <h2 class="h3 text-center pt-2 pb-3">Coach #@kupeCoach.CoachNumber (Price: @kupeCoach.PriceTenge ₸)</h2>
+                <div class="row mt-5 p-3 pb-2 border rounded-3 bg-white shadow">
+                    <h2 class="h3 text-center pt-2 pb-3">Coach #@kupeCoach.CoachNumber (Price: @kupeCoach.PriceTenge ₸)</h2>
 
-                <form action="/PurchaseTicket" method="get">
-                    <input type="hidden" name="coach" value="@kupeCoach.CoachNumber">
+                    <form action="/PurchaseTicket" method="get">
+                        <input type="hidden" name="coachNumber" value="@kupeCoach.CoachNumber">
 
-                    <div class="overflow-auto d-flex justify-content-center">
-                        <div class="coachBgImg">
-                            <div class="btn-group text-center" role="group">
+                        <div class="overflow-auto d-flex justify-content-center">
+                            <div class="coachBgImg">
+                                <div class="btn-group text-center" role="group">
                                 @foreach (var place in kupeCoach.Places) {
-                                    <div class="containerPlace">
-                                        <input type="radio" class="btn-check" name="place" value="@place.PlaceNumber" id="@($"coach{kupeCoach.CoachNumber}Place{place.PlaceNumber}")" autocomplete="off" required @(place.IsFree ? "" : "disabled")>
-                                        <label class="btn btn-outline-primary" for="@($"coach{kupeCoach.CoachNumber}Place{place.PlaceNumber}")">@place.PlaceNumber</label>
-                                    </div>
+                                            <div class="containerPlace">
+                                                <input type="radio" class="btn-check" name="placeNumber" value="@place.PlaceNumber" id="@($"coach{kupeCoach.CoachNumber}Place{place.PlaceNumber}")" autocomplete="off" required @(place.IsFree ? "" : "disabled")>
+                                                <label class="btn btn-outline-primary" for="@($"coach{kupeCoach.CoachNumber}Place{place.PlaceNumber}")">@place.PlaceNumber</label>
+                                            </div>
                                 }
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="d-flex justify-content-center my-4">
-                        <input type="submit" class="form-control btn btn-primary continueBtn" value="Continue">
-                    </div>
-                </form>
-            </div>
+                        <div class="d-flex justify-content-center my-4">
+                            <input type="submit" class="form-control btn btn-primary continueBtn" value="Continue">
+                        </div>
+                    </form>
+                </div>
         }
     </div>
 </div>

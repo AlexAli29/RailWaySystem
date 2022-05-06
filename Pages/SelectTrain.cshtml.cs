@@ -23,12 +23,12 @@ namespace TrainTickets.Pages
         
 
         public async Task OnGetAsync(string originStation, string destStation, string departureDate) {
-            DateOnly departDate = DateOnly.ParseExact(departureDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            DateTime departDatetime = DateTime.ParseExact(departureDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
 
             StationsAndDateVM = new StationsAndDateVM {
                 OriginStation = originStation,
                 DestStation = destStation,
-                DepartDate = departDate
+                DepartDatetime = departDatetime
             };
             TempData["StationsAndDateVM"] = JsonConvert.SerializeObject(StationsAndDateVM);
 
@@ -44,8 +44,7 @@ namespace TrainTickets.Pages
         private void InitTrainVM(IList<Train> trains, StationsAndDateVM stationsAndDateVM) {
             string originStation = stationsAndDateVM.OriginStation;
             string destStation = stationsAndDateVM.DestStation;
-            // Convert to DateTime to compare dates with TrainStation.DepartureAt of type DateTime (see comment below)
-            DateTime departDatetime = stationsAndDateVM.DepartDate.ToDateTime(new TimeOnly(0, 0));
+            DateTime departDatetime = stationsAndDateVM.DepartDatetime;
 
             foreach (Train train in trains) {
                 TrainStation originTS = null;
@@ -54,7 +53,7 @@ namespace TrainTickets.Pages
                 foreach (TrainStation ts in train.TrainStations.ToList()) {
                     if (ts.Station.Name.Equals(originStation)) {
                         originTS = ts;
-                        if (ts.DepartureAt.Date.Equals(departDatetime.Date)) { // DateTime comparison is here
+                        if (ts.DepartureAt.Date.Equals(departDatetime.Date)) {
                             departDateMatches = true;
                         }
                     }
@@ -69,10 +68,8 @@ namespace TrainTickets.Pages
                         Name = train.Name,
                         FirstStation = train.TrainStations.First().Station.Name,
                         LastStation = train.TrainStations.Last().Station.Name,
-                        DepartDate = DateOnly.FromDateTime(originTS.DepartureAt),
-                        DepartTime = TimeOnly.FromDateTime(originTS.DepartureAt),
-                        ArrivalDate = DateOnly.FromDateTime(destTS.ArrivalAt),
-                        ArrivalTime = TimeOnly.FromDateTime(destTS.ArrivalAt),
+                        DepartDatetime = originTS.DepartureAt,
+                        ArrivalDatetime = destTS.ArrivalAt,
                         TripDuration = ToReadableString(tripTimespan),
                         MinPriceTenge = MinPriceAmongCoaches(train.Coaches.ToList())
                     });

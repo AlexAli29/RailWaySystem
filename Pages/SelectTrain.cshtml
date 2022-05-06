@@ -9,7 +9,7 @@
 }
 
 <div class="container pb-5">
-    <h1 class="h2 mt-5 text-center">@Model.StationsAndDateVM.OriginStation &#8594; @Model.StationsAndDateVM.DestStation&nbsp;&nbsp;&nbsp;<span class="h4">@Model.StationsAndDateVM.DepartDate</span></h1>
+    <h1 class="h2 mt-5 text-center">@Model.StationsAndDateVM.OriginStation &#8594; @Model.StationsAndDateVM.DestStation&nbsp;&nbsp;&nbsp;<span class="h4">@(DateOnly.FromDateTime(@Model.StationsAndDateVM.DepartDatetime))</span></h1>
 
     @foreach (var trainVM in Model.TrainVM) {
         <div class="row mt-5 p-3 border rounded-3 bg-light shadow">
@@ -24,16 +24,16 @@
                     <div class="col-4 fw-bold">Arrival</div>
                 </div>
                 <div class="row">
-                    <div class="col-4">
-                        <span>@trainVM.DepartTime</span>
-                        <span class="date">@trainVM.DepartDate</span>
+                        <div class="col-4">
+                            <span>@(TimeOnly.FromDateTime(@trainVM.DepartDatetime))</span>
+                            <span class="date">@(DateOnly.FromDateTime(@trainVM.DepartDatetime))</span>
+                        </div>
+                        <div class="col-4">@trainVM.TripDuration</div>
+                        <div class="col-4">
+                            <span>@(TimeOnly.FromDateTime(@trainVM.ArrivalDatetime))</span>
+                            <span class="date">@(DateOnly.FromDateTime(@trainVM.ArrivalDatetime))</span>
+                        </div>
                     </div>
-                    <div class="col-4">@trainVM.TripDuration</div>
-                    <div class="col-4">
-                        <span>@trainVM.ArrivalTime</span>
-                        <span class="date">@trainVM.ArrivalDate</span>
-                    </div>
-                </div>
             </div>
             <div class="col-md-2">
                 <div class="row">
@@ -44,10 +44,8 @@
                         <input type="hidden" name="trainName" value="@trainVM.Name">
                         <input type="hidden" name="trainFirstStation" value="@trainVM.FirstStation">
                         <input type="hidden" name="trainLastStation" value="@trainVM.LastStation">
-                        <input type="hidden" name="trainDepartDate" value="@trainVM.DepartDate">
-                        <input type="hidden" name="trainDepartTime" value="@trainVM.DepartTime">
-                        <input type="hidden" name="trainArrivalDate" value="@trainVM.ArrivalDate">
-                        <input type="hidden" name="trainArrivalTime" value="@trainVM.ArrivalTime">
+                        <input type="hidden" name="trainDepartDatetime" value="@trainVM.DepartDatetime">
+                        <input type="hidden" name="trainArrivalDatetime" value="@trainVM.ArrivalDatetime">
                         <input type="hidden" name="trainTripDuration" value="@trainVM.TripDuration">
                         <input type="hidden" name="trainMinPriceTenge" value="@trainVM.MinPriceTenge">
                     </form>
