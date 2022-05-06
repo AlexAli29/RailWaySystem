@@ -1,0 +1,9 @@
+﻿@page
+@model TrainTickets.Pages.MessageModel
+@{
+    ViewData["Title"] = "Ticket Purchase Completed";
+}
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <h1 class="display-6 text-success">Order #<span>@Model.OrderNumber</span> processed successfully. Thank you for the purchase!</h1>
+</div>
