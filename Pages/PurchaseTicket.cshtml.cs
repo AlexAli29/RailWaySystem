@@ -27,5 +27,19 @@ namespace TrainTickets.Pages
                 .FirstOrDefaultAsync(c => c.TrainID == TrainVM.ID && c.CoachNumber == coachNumber);
             PlaceNumber = placeNumber;
         }
+
+        public async Task<IActionResult> OnPostAsync(string firstName, string lastName) {
+            int originTrainStationID = (int) TempData.Peek("OriginTrainStationID");
+            int destTrainStationID = (int) TempData.Peek("DestTrainStationID");
+            Place place = await _context.Place.FirstOrDefaultAsync(p => p.CoachID == Coach.ID && p.PlaceNumber == PlaceNumber);
+            int placeID = place.ID;
+
+            Ticket newTicket = new Ticket { OriginTrainStationID = originTrainStationID, DestTrainStationID = destTrainStationID,
+                    FirstName = firstName, LastName = lastName, CreatedAt = DateTime.Now};
+            _context.Add(newTicket);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
     }
 }

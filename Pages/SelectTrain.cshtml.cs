@@ -73,6 +73,10 @@ namespace TrainTickets.Pages
                         TripDuration = ToReadableString(tripTimespan),
                         MinPriceTenge = MinPriceAmongCoaches(train.Coaches.ToList())
                     });
+
+                    // For saving Ticket with origin_train_station_id and dest_train_station_id in PurchaseTicket.OnPost()
+                    TempData["OriginTrainStationID"] = originTS.ID;
+                    TempData["DestTrainStationID"] = destTS.ID;
                 }
             }
         }
