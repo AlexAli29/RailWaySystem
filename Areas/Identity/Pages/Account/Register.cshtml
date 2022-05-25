@@ -13,14 +13,14 @@
                 <div class="mb-3 col-lg-6">
                     <label asp-for="Input.FirstName" class="form-label">First name:</label>
                     <input asp-for="Input.FirstName" class="form-control" autocomplete="username" aria-required="true" placeholder="Enter your first name" />
-                    <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                    <span asp-validation-for="Input" class="text-danger"></span>
                 </div>
                 <div class="mb-3 col-lg-6">
                     <label asp-for="Input.LastName" class="form-label">Last name:</label>
                     <input asp-for="Input.LastName" class="form-control" autocomplete="username" aria-required="true" placeholder="Enter your last name" />
-                    <span asp-validation-for="Input.LastName" class="text-danger"></span>
                 </div>
             </div>
+            
             <div class="row">
                 <div class="mb-3 col-lg-6">
                     <label asp-for="Input.IIN" class="form-label">IIN:</label>

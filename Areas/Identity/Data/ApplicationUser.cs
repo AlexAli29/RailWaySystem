@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
@@ -16,5 +15,9 @@ public class ApplicationUser : IdentityUser {
     [Required]
     public string IIN { get; set; }
     public virtual ICollection<IdentityUserRole<string>> UserRoles { get; set; }
+
+    public string GetFullName() {
+        return FirstName + " " + LastName;
+    }
 }
 

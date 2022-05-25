@@ -18,5 +18,17 @@ public class IdentityContext : IdentityDbContext<ApplicationUser>
         // Customize the ASP.NET Identity model and override the defaults if needed.
         // For example, you can rename the ASP.NET Identity table names and more.
         // Add your customizations after calling base.OnModelCreating(builder);
+        builder.Entity<ApplicationUser>()
+        .HasIndex(u => u.Email)
+        .IsUnique();
+        builder.Entity<ApplicationUser>()
+        .HasIndex(u => u.PhoneNumber)
+        .IsUnique();
+        builder.Entity<ApplicationUser>()
+        .HasIndex(u => new { u.FirstName, u.LastName })
+        .IsUnique();
+        builder.Entity<ApplicationUser>()
+        .HasIndex(u => u.IIN)
+        .IsUnique();
     }
 }
