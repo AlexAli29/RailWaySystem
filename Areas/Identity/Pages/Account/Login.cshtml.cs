@@ -18,6 +18,7 @@ using TrainTickets.Areas.Identity.Data;
 
 namespace TrainTickets.Areas.Identity.Pages.Account
 {
+    [AllowAnonymous]
     public class LoginModel : PageModel
     {
         private readonly SignInManager<ApplicationUser> _signInManager;

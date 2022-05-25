@@ -7,9 +7,11 @@ using System.Globalization;
 
 using TrainTickets.Models.ViewModels;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TrainTickets.Pages
 {
+    [AllowAnonymous]
     public class SelectTrainModel : PageModel
     {
         private readonly TrainTicketsContext _context;

@@ -6,9 +6,11 @@ using TrainTickets.Models;
 using TrainTickets.Data;
 using TrainTickets.Models.ViewModels;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TrainTickets.Pages
 {
+    [AllowAnonymous]
     public class PurchaseTicketModel : PageModel {
         private readonly TrainTicketsContext _context;
 

@@ -6,9 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 using TrainTickets.Models.ViewModels;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TrainTickets.Pages
 {
+    [AllowAnonymous]
     public class SelectCoachModel : PageModel {
         private readonly TrainTicketsContext _context;
         public SelectCoachModel(TrainTicketsContext context) {

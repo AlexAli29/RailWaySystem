@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using TrainTickets.Models;
 using TrainTickets.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TrainTickets.Pages {
+    [AllowAnonymous]
     public class IndexModel : PageModel {
         private readonly TrainTicketsContext _context;
 

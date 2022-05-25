@@ -23,6 +23,7 @@ using TrainTickets.Validation;
 
 namespace TrainTickets.Areas.Identity.Pages.Account
 {
+    [AllowAnonymous]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<ApplicationUser> _signInManager;

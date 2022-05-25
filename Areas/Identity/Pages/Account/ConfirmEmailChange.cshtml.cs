@@ -14,6 +14,7 @@ using TrainTickets.Areas.Identity.Data;
 
 namespace TrainTickets.Areas.Identity.Pages.Account
 {
+    [AllowAnonymous]
     public class ConfirmEmailChangeModel : PageModel
     {
         private readonly UserManager<ApplicationUser> _userManager;
