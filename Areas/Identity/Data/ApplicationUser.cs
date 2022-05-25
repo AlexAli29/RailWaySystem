@@ -13,6 +13,8 @@ public class ApplicationUser : IdentityUser {
     public string FirstName { get; set; }
     [Required]
     public string LastName { get; set; }
+    [Required]
+    public string IIN { get; set; }
     public virtual ICollection<IdentityUserRole<string>> UserRoles { get; set; }
 }
 

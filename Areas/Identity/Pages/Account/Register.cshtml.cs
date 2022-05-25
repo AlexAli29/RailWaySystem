@@ -77,6 +77,12 @@ namespace TrainTickets.Areas.Identity.Pages.Account
             [Required]
             [Display(Name = "Last name")]
             public string LastName { get; set; }
+            [Required]
+            [Display(Name = "IIN")]
+            public string IIN { get; set; }
+            [Required]
+            [Display(Name = "Phone number")]
+            public string PhoneNumber { get; set; }
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -168,6 +174,8 @@ namespace TrainTickets.Areas.Identity.Pages.Account
                 ApplicationUser user = Activator.CreateInstance<ApplicationUser>();
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
+                user.IIN = Input.IIN;
+                user.PhoneNumber = Input.PhoneNumber;
                 return user;
             }
             catch

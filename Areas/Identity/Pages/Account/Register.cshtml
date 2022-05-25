@@ -23,9 +23,22 @@
             </div>
             <div class="row">
                 <div class="mb-3 col-lg-6">
+                    <label asp-for="Input.IIN" class="form-label">IIN:</label>
+                    <input asp-for="Input.IIN" class="form-control" autocomplete="username" aria-required="true" pattern="[0-9]{12}"
+                                   placeholder="Enter your IIN (12 numbers)" />
+                    <span asp-validation-for="Input.IIN" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mb-3 col-lg-6">
                     <label asp-for="Input.Email" class="form-label">Email:</label>
                     <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="example@email.com" />
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="mb-3 col-lg-6">
+                    <label asp-for="Input.PhoneNumber" class="form-label">Phone number:</label>
+                    <input asp-for="Input.PhoneNumber" class="form-control" autocomplete="username" aria-required="true" placeholder="+87071234567" pattern="+[0-9]{11}" />
+                    <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
                 </div>
             </div>
             <div class="row">
