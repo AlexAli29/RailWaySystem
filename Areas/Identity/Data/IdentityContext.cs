@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using TrainTickets.Areas.Identity.Data;
 
-namespace TrainTickets.Data;
+namespace TrainTickets.Areas.Identity.Data;
 
-public class IdentityContext : IdentityDbContext<IdentityUser>
+public class IdentityContext : IdentityDbContext<ApplicationUser>
 {
     public IdentityContext(DbContextOptions<IdentityContext> options)
         : base(options)

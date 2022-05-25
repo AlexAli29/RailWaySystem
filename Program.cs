@@ -2,17 +2,27 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using TrainTickets.Data;
 using Microsoft.AspNetCore.Identity;
+using TrainTickets.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using TrainTickets.Services;
+
+
+
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("IdentityContextConnection") ?? throw new InvalidOperationException("Connection string 'IdentityContextConnection' not found.");
 
 builder.Services.AddDbContext<IdentityContext>(options =>
     options.UseSqlServer(connectionString));;
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<IdentityContext>();;
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<IdentityContext>();
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+builder.Services.AddTransient<IEmailSender, EmailSender>();
+builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 
 builder.Services.AddDbContext<TrainTicketsContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("TrainTicketsContext") ?? throw new InvalidOperationException("Connection string 'TrainTicketsContext' not found.")));
