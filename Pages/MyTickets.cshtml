@@ -1,0 +1,57 @@
+﻿@page
+@model TrainTickets.Pages.MyTicketsModel
+@{
+    ViewData["Title"] = "My Tickets";
+}
+
+<h1>My Tickets</h1>
+
+@foreach (var ticketVM in Model.TicketVM) {
+    <div class="row p-3 border rounded-3 bg-light shadow my-5">
+
+        <h2 class="h4 d-inline">Ticket #@ticketVM.TicketOrdinal <small class="text-muted">(created: @(DateOnly.FromDateTime(@ticketVM.CreatedAt)))</small></h2>
+
+        <hr />
+
+        <div class="col-md-3">
+            <div class="row pt-2 pb-1 fw-bold"><i class="fa-solid fa-train">&nbsp;&nbsp;@ticketVM.TrainName</i></div>
+            <div class="row">@ticketVM.OriginStation &#8594; @ticketVM.DestStation</div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-4 fw-bold">Departure</div>
+                <div class="col-4 fw-bold">Trip Duration</div>
+                <div class="col-4 fw-bold">Arrival</div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <span>@(TimeOnly.FromDateTime(@ticketVM.DepartDatetime))</span>
+                    <span class="date">@(DateOnly.FromDateTime(@ticketVM.DepartDatetime))</span>
+                </div>
+                <div class="col-4">@ticketVM.TripDuration</div>
+                <div class="col-4">
+                    <span>@(TimeOnly.FromDateTime(@ticketVM.ArrivalDatetime))</span>
+                    <span class="date">@(DateOnly.FromDateTime(@ticketVM.ArrivalDatetime))</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row fw-bold">
+                <div class="col-8">
+                    Coach, Place
+                </div>
+                <div class="col-4">
+                    Price
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-8">
+                    #<span>@ticketVM.CoachNumber</span>, #<span>@ticketVM.PlaceNumber</span> (@ticketVM.CoachType)
+                </div>
+                <div class="col-4">
+                    <span>@ticketVM.PriceTenge</span> ₸
+                </div>
+            </div>
+        </div>
+    </div>
+}

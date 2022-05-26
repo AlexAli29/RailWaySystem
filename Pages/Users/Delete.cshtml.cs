@@ -17,7 +17,7 @@ namespace TrainTickets.Areas.Identity.Pages.Users
 
         public ApplicationUser UserToDelete { get; set; }
 
-        public async Task<IActionResult> OnGet(string? id)
+        public async Task<IActionResult> OnGet(string id)
         {
             if (id == null) {
                 return NotFound();
@@ -34,7 +34,7 @@ namespace TrainTickets.Areas.Identity.Pages.Users
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(string? id) {
+        public async Task<IActionResult> OnPostAsync(string id) {
             if (id == null) {
                 return NotFound();
             }

@@ -19,7 +19,7 @@ namespace TrainTickets.Authorization {
                 return Task.CompletedTask;
             }
 
-            var user = (ApplicationUser)_userManager.GetUserAsync(context.User).Result;
+            var user = _userManager.GetUserAsync(context.User).Result;
             if (requirement.Name == "READ" && (ticket.FirstName + " " + ticket.LastName == user.FirstName + " " + user.LastName)) {
                 context.Succeed(requirement);
             }

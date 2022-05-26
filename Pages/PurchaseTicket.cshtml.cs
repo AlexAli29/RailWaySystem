@@ -32,7 +32,7 @@ namespace TrainTickets.Pages
                 .FirstOrDefaultAsync(c => c.TrainID == TrainVM.ID && c.CoachNumber == coachNumber);
             PlaceNumber = placeNumber;
 
-            // to be used in the below OnPostAsync method (fields are nulled OnPost since this object lifecycle is handled
+            // to be used in the below OnPostAsync method (fields are nulled OnPost since this object's lifecycle is handled
             // by ASP.NET Core)
             TempData["CoachID"] = Coach.ID;
             TempData["PlaceNumber"] = PlaceNumber;
@@ -49,9 +49,10 @@ namespace TrainTickets.Pages
             int placeID = place.ID;
 
             
-            Ticket newTicket = new Ticket { OriginTrainStationID = originTrainStationID, DestTrainStationID = destTrainStationID,
-                    FirstName = firstName, LastName = lastName, 
-                    CreatedAt = DateTime.Now};
+            Ticket newTicket = new Ticket { Place = place, 
+                OriginTrainStationID = originTrainStationID, DestTrainStationID = destTrainStationID,
+                FirstName = firstName, LastName = lastName, 
+                CreatedAt = DateTime.Now};
             _context.Add(newTicket);
             await _context.SaveChangesAsync();
 
