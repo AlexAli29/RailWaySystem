@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 using Microsoft.AspNetCore.Identity;
 
 namespace TrainTickets.Areas.Identity.Data;
@@ -14,6 +15,8 @@ public class ApplicationUser : IdentityUser {
     public string LastName { get; set; }
     [Required]
     public string IIN { get; set; }
+    [DisplayName("Phone number")]
+    public override string PhoneNumber { get => base.PhoneNumber; set => base.PhoneNumber = value; }
     public ICollection<IdentityUserRole<string>> UserRoles { get; set; }
 
     public string GetFullName() {

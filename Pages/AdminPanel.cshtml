@@ -1,0 +1,80 @@
+﻿@page
+@model TrainTickets.Pages.AdminPanelModel
+@{
+    ViewData["Title"] = "Admin Panel";
+}
+
+<h1>Admin Panel</h1>
+
+<div class="row">
+    <div class="col-6">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td>
+                        Users
+                    </td>
+                    <td>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <a asp-page="./Users/Index">View All</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Tickets
+                    </td>
+                    <td>
+                        <a asp-page="./Tickets/Create">Create</a> |
+                        <a asp-page="./Tickets/Index">View All</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Stations
+                    </td>
+                    <td>
+                        <a asp-page="./Stations/Create">Create</a> |
+                        <a asp-page="./Stations/Index">View All</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Trains
+                    </td>
+                    <td>
+                        <a asp-page="./Trains/Create">Create</a> |
+                        <a asp-page="./Trains/Index">View All</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        TrainStations
+                    </td>
+                    <td>
+                        <a asp-page="./TrainStations/Create">Create</a> |
+                        <a asp-page="./TrainStations/Index">View All</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Coaches
+                    </td>
+                    <td>
+                        <a asp-page="./Coaches/Create">Create</a> |
+                        <a asp-page="./Coaches/Index">View All</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Places
+                    </td>
+                    <td>
+                        <a asp-page="./Places/Create">Create</a> |
+                        <a asp-page="./Places/Index">View All</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

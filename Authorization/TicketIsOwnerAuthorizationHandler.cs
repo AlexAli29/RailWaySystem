@@ -6,9 +6,9 @@ using TrainTickets.Areas.Identity.Data;
 
 namespace TrainTickets.Authorization {
     public class TicketIsOwnerAuthorizationHandler : AuthorizationHandler<OperationAuthorizationRequirement, Ticket> {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public TicketIsOwnerAuthorizationHandler(UserManager<IdentityUser> userManager) {
+        public TicketIsOwnerAuthorizationHandler(UserManager<ApplicationUser> userManager) {
             _userManager = userManager;
         }
 

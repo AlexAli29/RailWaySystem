@@ -1,0 +1,54 @@
+﻿@page
+@model TrainTickets.Areas.Identity.Pages.Users.IndexModel
+@{
+    ViewData["Title"] = "Users";
+}
+
+<h1>Users</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Users[0].FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users[0].LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users[0].IIN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users[0].Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users[0].PhoneNumber)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.Users) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => user.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => user.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => user.IIN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => user.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => user.PhoneNumber)
+                </td>
+                <td>
+                    <a asp-page="./Delete" asp-route-id="@user.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
