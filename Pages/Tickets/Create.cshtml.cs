@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -11,6 +12,7 @@ using TrainTickets.Models;
 
 namespace TrainTickets.Pages.Tickets
 {
+    [Authorize(Roles = "ADMIN")]
     public class CreateModel : PageModel
     {
         private readonly TrainTickets.Data.TrainTicketsContext _context;

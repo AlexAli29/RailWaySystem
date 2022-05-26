@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using TrainTickets.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using TrainTickets.Services;
+using Microsoft.Extensions.Configuration;
 
 
 
@@ -26,6 +27,7 @@ builder.Services.AddAuthorization(options => {
     options.FallbackPolicy = new AuthorizationPolicyBuilder()
         .RequireAuthenticatedUser()
         .Build();
+    options.AddPolicy("ADMIN_ACCESS_ONLY", policy => policy.RequireRole("ADMIN"));
 });
 
 builder.Services.AddTransient<IEmailSender, EmailSender>();
@@ -46,17 +48,22 @@ if (!app.Environment.IsDevelopment()) {
 using (var scope = app.Services.CreateScope()) {
     var services = scope.ServiceProvider;
 
-    var context = services.GetRequiredService<TrainTicketsContext>();
-    context.Database.EnsureCreated();
-    DbInitializer.Initialize(context);
+    var ticketsContext = services.GetRequiredService<TrainTicketsContext>();
+    ticketsContext.Database.EnsureCreated();
+    DbInitializer.Initialize(ticketsContext);
+
+    var identityContext = services.GetRequiredService<IdentityContext>();
+    identityContext.Database.Migrate();
+    var adminPassword = builder.Configuration.GetValue<string>("AdminPassword");
+    await IdentityDBInitializer.Initialize(services, adminPassword);
 }
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-app.UseAuthentication();;
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();

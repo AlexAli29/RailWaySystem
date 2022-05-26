@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using TrainTickets.Data;
 using TrainTickets.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TrainTickets.Pages.Coaches
 {
+    [Authorize(Roles = "ADMIN")]
     public class DeleteModel : PageModel
     {
         private readonly TrainTickets.Data.TrainTicketsContext _context;

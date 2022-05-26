@@ -14,7 +14,7 @@ public class ApplicationUser : IdentityUser {
     public string LastName { get; set; }
     [Required]
     public string IIN { get; set; }
-    public virtual ICollection<IdentityUserRole<string>> UserRoles { get; set; }
+    public ICollection<IdentityUserRole<string>> UserRoles { get; set; }
 
     public string GetFullName() {
         return FirstName + " " + LastName;
