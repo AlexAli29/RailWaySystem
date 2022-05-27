@@ -5,35 +5,190 @@
 }
 
 @section Styles {
-    <link rel="stylesheet" href="~/css/index.css">
+<link rel="stylesheet" href="~/css/index.css">
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/js/bootstrap.bundle.min.js"></script>
 }
 
-<div id="bgImg" class="d-flex align-items-center vh-100">
+<div id="bgImg" class="d-flex align-items-center vh-100 h-100">
     <div class="col-md-10 offset-md-1 mb-5 border rounded-3 py-4 px-3 bg-light shadow">
         <form action="/SelectTrain" method="get" class="row">
             <div class="col-md-3">
-                <select class="form-select form-select-lg" name="originStation">
-                    <option value="" selected disabled hidden>Select origin station</option>
-                    @foreach (var station in Model.Station) {
-                        <option value="@station.Name">@station.Name</option>
-                    }
-                </select>
+                <div class="dropdown">
+                    <input class="form-control form-control-lg" type="text" id="searchStation1" name="originStation" data-toggle="dropdown" autocomplete="off" placeholder="Origin station">
+                    <div id="menu1" class="dropdown-menu">
+                        <div id="menuItems1">
+                            @foreach (var station in Model.Station) {
+                                <input type="button" class="dropdown-item firstdrop" value="@station.Name">
+                            }
+                        </div>
+                        <div id="empty1" class="dropdown-header" style="display: none;">No stations found</div>
+                    </div>
+                </div>
             </div>
+
             <div class="col-md-3">
-                <select class="form-select form-select-lg" name="destStation">
-                    <option value="" selected disabled hidden>Select destination station</option>
-                    @foreach (var station in Model.Station) {
-                        <option value="@station.Name">@station.Name</option>
-                    }
-                </select>
+                <div class="dropdown">
+                    <input class="form-control form-control-lg" type="text" id="searchStation2" name="destStation" data-toggle="dropdown" autocomplete="off" placeholder="Destination station">
+                    <div id="menu2" class="dropdown-menu">
+
+                        <div id="menuItems2">
+                            @foreach (var station in Model.Station) {
+                                <input type="button" class="dropdown-item seconddrop" value="@station.Name">
+                            }
+                        </div>
+                        <div id="empty2" class="dropdown-header" style="display: none;">No stations found</div>
+                    </div>
+                </div>
+
             </div>
+
             <div class="col-md-3">
                 <input class="form-control form-control-lg col-md-2" type="date" name="departureDate" value="2022-04-30">
             </div>
 
             <div class="col-md-3">
-                <input id="searchBtn" type="submit" class="form-control btn btn-primary" value="Search">
+                <input id="searchBtn" type="submit" class="form-control btn btn-primary" value="Search" disabled>
             </div>
         </form>
     </div>
+
+    <style>
+        .dropdown-menu {
+            transform: translate3d(5px, 47px, 0px) !important;
+            max-height: 40vh;
+            overflow-y: scroll;
+        }
+    </style>
+
+    <script>
+        let search1 = document.getElementById("searchStation1")
+        let search2 = document.getElementById("searchStation2")
+
+        let isSearch1Valid = false
+        let isSearch2Valid = false
+
+        let items1 = document.getElementsByClassName("firstdrop")
+        let items2 = document.getElementsByClassName("seconddrop")
+
+        let empty1 = document.getElementById("empty1");
+        let empty2 = document.getElementById("empty2");
+
+        $('#menuItems1').on('click', '.dropdown-item', function() {
+            search1.value = $(this)[0].value
+            filter1()
+            $("#menu2").hide()
+        })
+        $('#menuItems2').on('click', '.dropdown-item', function() {
+            search2.value = $(this)[0].value
+            filter2()
+            $("#menu1").hide()
+        })
+
+        $(search1).focusin(function() {
+            $("#menu1").show();
+        })
+        $(search2).focusin(function() {
+            $("#menu2").show();
+        })
+
+        $('body').click(function(event) {
+            if(event.target.id === "searchStation1") {
+                return
+            }
+            $("#menu1").hide()
+            enableOrDisableSearchBtnBasedOnInputsValidity()
+            if (event.target.className === "firstdrop") {
+                return
+            }
+            
+            if (search1.value && !isSearch1Valid) {
+                search1.value = $(".firstdrop")[0].value
+                filter1()
+            }
+        });
+        $('body').click(function(event) {
+            if(event.target.id === "searchStation2") {
+                return
+            }
+            $("#menu2").hide()
+            enableOrDisableSearchBtnBasedOnInputsValidity()
+            if (event.target.className === "seconddrop") {
+                return
+            }
+
+            if (search2.value && !isSearch2Valid) {
+                search2.value = $(".seconddrop")[1].value
+                filter2()
+            }
+        });
+
+        search1.addEventListener('input', function () {
+            $("#menu1").show()
+            filter1()
+        })
+        search2.addEventListener('input', function () {
+            $("#menu2").show()
+            filter2()
+        })
+
+        function enableOrDisableSearchBtnBasedOnInputsValidity() {
+            if (isSearch1Valid && isSearch2Valid) {
+                $("#searchBtn").removeAttr("disabled")
+            } else {
+                $("#searchBtn").attr("disabled", true)
+            }
+        }
+
+        function filter1() {
+            let oneMatched = filter(search1.value.trim().toLowerCase(), items1, empty1);
+            isSearch1Valid = oneMatched && search1.value.trim().toLowerCase() === oneMatched.trim().toLowerCase()
+            if (isSearch1Valid) {
+                search1.value = oneMatched
+                $("#menu1").hide()
+            }
+            enableOrDisableSearchBtnBasedOnInputsValidity()
+        }
+
+        function filter2() {
+            let oneMatched = filter(search2.value.trim().toLowerCase(), items2, empty2)
+            isSearch2Valid = oneMatched && search2.value.trim().toLowerCase() === oneMatched.trim().toLowerCase()
+            if (isSearch2Valid) {
+                search2.value = oneMatched
+                $("#menu2").hide()
+            }
+            enableOrDisableSearchBtnBasedOnInputsValidity()
+        }
+
+        function filter(word, items, empty) {
+            let lastMatched = -1;
+            let hidden = 0
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].value.toLowerCase().startsWith(word)) {
+                    $(items[i]).show()
+                    lastMatched = i;
+                }
+                else {
+                    $(items[i]).hide();
+                    hidden++
+                }
+            }
+
+            if (hidden === items.length) {
+                $(empty).show()
+            }
+            else {
+                $(empty).hide()
+            }
+
+            let numMatches = items.length - hidden
+            if (numMatches === 1) {
+                return items[lastMatched].value
+            }
+            return ""
+        }
+    </script>
 </div>
+
