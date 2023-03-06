@@ -56,7 +56,8 @@ namespace TrainTickets.Areas.Identity.Data {
             var userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
 
             var user = await userManager.FindByIdAsync(userID);
-            if (user == null) {
+            if (user == null)
+            {
                 throw new Exception("The password was probably not strong enough!");
             }
 

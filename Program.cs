@@ -55,7 +55,7 @@ using (var scope = app.Services.CreateScope()) {
     var identityContext = services.GetRequiredService<IdentityContext>();
     identityContext.Database.Migrate();
     var adminPassword = builder.Configuration.GetValue<string>("AdminPassword");
-    await IdentityDBInitializer.Initialize(services, adminPassword);
+    await IdentityDBInitializer.Initialize(services, "H654321e36525hjgjgGGjggjgjgjj4646446464646нананаапгпшрлраппрпроп");
 }
 
 app.UseHttpsRedirection();
